@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Loan Approval Predictor</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<div class="container">
+    <h2>Loan Approval Prediction</h2>
+
+    <form action="/predict" method="post">
+       <input type="number" name="Gender" placeholder="Gender (1=Male, 0=Female)" required>
+<input type="number" name="Married" placeholder="Married (1=Yes, 0=No)" required>
+<input type="number" name="Dependents" placeholder="Dependents (0,1,2,3)" required>
+<input type="number" name="Education" placeholder="Graduate (1=Yes, 0=No)" required>
+<input type="number" name="Self_Employed" placeholder="Self Employed (1=Yes, 0=No)" required>
+
+<input type="number" name="Loan_Amount" placeholder="Loan Amount" required>
+<input type="number" name="Loan_Amount_Term" placeholder="Loan Term (in months)" required>
+<input type="number" name="Credit_History" placeholder="Credit History (1=Good, 0=Bad)" required>
+<input type="number" name="Property_Area" placeholder="Property Area (0=Rural,1=Semiurban,2=Urban)" required>
+
+<input type="number" name="Total_Income" placeholder="Total Income" required>
+
+
+        <button type="submit">Predict</button>
+    </form>
+
+   {% if prediction %}
+    <div class="result">
+        <h3>{{ prediction }}</h3>
+        <p><strong>Approval Probability:</strong> {{ probability }}%</p>
+        <p class="explanation">{{ explanation }}</p>
+    </div>
+{% endif %}
+
+</div>
+
+</body>
+</html>
